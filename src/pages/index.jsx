@@ -7,7 +7,7 @@ import 'aos/dist/aos.css'
 import Header from "../components/HomePage/Header";
 import { Hero } from "../components/HomePage/Hero";
 import { About } from "../components/HomePage/About";
-import { Benefit } from "../components/HomePage/Benefit/Benefit";
+import { Benefit } from "../components/HomePage/benefit/Benefit";
 import { Partner } from "../components/HomePage/partner/Partner";
 import { Footer } from "../components/HomePage/footer/Footer";
 
