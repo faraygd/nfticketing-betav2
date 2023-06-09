@@ -14,7 +14,7 @@ const Gallery = ({ nft }) => {
     console.log("aos", Aos);
   }, []);
   return (
-    <div className="bg-[#21130d] min-h-screen h-full py-12">
+    <div className="bg-[#232222] min-h-screen h-full py-12">
       <h1 className="text-center font-bold text-2xl text-white mt-12 my-12">
         My NFT
       </h1>
