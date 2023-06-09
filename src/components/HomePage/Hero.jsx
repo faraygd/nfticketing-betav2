@@ -31,7 +31,7 @@ export const Hero = () => {
         <div className="mb-6 flex order-first md:order-none justify-around" data-aos="fade-right">
           <img
             className="w-full xl:w-[410px] h-[350px]"
-            src="https://i.ibb.co/hFZgsvx/Final-Hero.png"
+            src="/images/ticket-hero.png"
           />
         </div>
       </div>
