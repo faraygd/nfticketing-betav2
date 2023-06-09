@@ -1,8 +1,8 @@
 import React from "react";
-import { Profile } from './Profile'
-import { MintingBox } from './MintingBox'
+import { Profile } from './apps/Profile'
+import { MintingBox } from './apps/MintingBox'
 
-export const AppsHero = (title, description) => {
+export const Heroes = (title, description) => {
   return (
     <section>
       <div className="flex relative justify-center w-full h-[400px] bg-gray-500">

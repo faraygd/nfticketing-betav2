@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BigNumber, utils } from "ethers";
 import { useMemo, useState } from "react";
 import ReactLoading from "react-loading";
-
+import Image from "next/image";
 export const MintingBox = ({ spinningBubbles }) => {
   const address = useAddress();
   const tokenId = 0; // Change to ID of NFT for Minting ( Thirdweb)
@@ -180,7 +180,6 @@ export const MintingBox = ({ spinningBubbles }) => {
     priceToMint,
     quantity,
   ]);
-
   return (
     <div className="w-[250px]">
       {isLoading ? (
@@ -194,9 +193,9 @@ export const MintingBox = ({ spinningBubbles }) => {
           />
         </div>
       ) : (
-        <div className="border border-outline w-[260px] ">
-          {/* <img src="images/thumb.jpg" /> */}
-          <div className="bg-gray-100 w-full h-[250px]"/>
+        <div className="bg-black border border-outline w-[260px] ">
+          <img src="https://ipfs-2.thirdwebcdn.com/ipfs/QmaxdKEu3DPLeRh7hoTtrdwo8w2nikNQ27TmCDoBYJx3pD/Final-Hero.png" />
+          {/* <div className="bg-gray-100 w-full h-[250px]"/> */}
           <div className="text-center bg-black text-white">
             {claimedSupply ? (
               <div className="text-center items-center py-4">

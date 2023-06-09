@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "../../../public/images/Logo.svg"
 import Image from "next/image";
 import { MenuList } from "../HomePage/MenuList"
-import { Sidebar } from "../HomePage/Sidebar";
+import { Sidebar } from "./Sidebar";
 import { Trigger } from "../Trigger";
 
 const Header = () => {
