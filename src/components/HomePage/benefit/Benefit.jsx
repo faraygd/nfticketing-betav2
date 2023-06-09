@@ -9,21 +9,21 @@ export const Benefit = () => {
           Benefit
         </h1>
         {/* Feature */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mt-20">
           <Feature
-            title="Chain Agnostic"
-            img="/images/icon-chain-agnostic.png"
-            description="Invest in projects across the most known blockchains such as Ethereum, Avalanche, Binance SmartChain, Solana, Polygon, Cherry Network and more."
+            title="Meet and greets"
+            img="/images/artist.png"
+            description="NFT Ticket holders can meet and greet with the artist directly without having to wait."
           />
           <Feature
-            title="Chain Agnostic"
-            img="/images/icon-secure-transactions.png"
-            description="Funds are secured by Seedling's state-of-the-art security protocols and best practises. Money is released from the decentralized escrow only when a sale is complete."
+            title="Exclusive Merchandise"
+            img="/images/merchandise.png"
+            description="Get exclusive merchandise for NFT ticket holders."
           />
           <Feature
-            title="Chain Agnostic"
-            img="/images/icon-compliant-investment.png"
-            description="Projects proposed on Seedling undergo rigorous legal tests to provide a transparent and legal investment experience to both founders and users."
+            title="Mystery Box"
+            img="/images/mystery.png"
+            description="NFT Ticket Holders can open a mystery box during the event and get various rewards such as cryptocurrency or merchandise."
           />
         </div>
       </div>

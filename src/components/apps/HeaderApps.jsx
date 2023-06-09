@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Logo from '../../../public/images/Logo.svg'
 import Image from "next/image";
-import { Trigger } from "../Trigger";
 
 export const HeaderApps = () => {
   const [nav, setNav] = useState(false);

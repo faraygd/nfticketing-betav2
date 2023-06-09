@@ -14,7 +14,7 @@ import { BigNumber, utils } from "ethers";
 import { useMemo, useState } from "react";
 import ReactLoading from "react-loading";
 
-export const MintingBox = ({ spinningBubbles, white }) => {
+export const MintingBox = ({ spinningBubbles }) => {
   const address = useAddress();
   const tokenId = 0; // Change to ID of NFT for Minting ( Thirdweb)
   const { contract: editionDrop } = useContract(
@@ -180,6 +180,7 @@ export const MintingBox = ({ spinningBubbles, white }) => {
     priceToMint,
     quantity,
   ]);
+
   return (
     <div className="w-[250px]">
       {isLoading ? (
@@ -194,7 +195,8 @@ export const MintingBox = ({ spinningBubbles, white }) => {
         </div>
       ) : (
         <div className="border border-outline w-[260px] ">
-          <img src="images/thumb.jpg" />
+          {/* <img src="images/thumb.jpg" /> */}
+          <div className="bg-gray-100 w-full h-[250px]"/>
           <div className="text-center bg-black text-white">
             {claimedSupply ? (
               <div className="text-center items-center py-4">
@@ -248,7 +250,6 @@ export const MintingBox = ({ spinningBubbles, white }) => {
                           cntr.erc1155.claim(tokenId, quantity)
                         }
                         isDisabled={!canClaim || buttonLoading}
-                        onSubmit={() => console.log("Transaction submitted")}
                         onError={(err) => {
                           toast.error("Ticket Purchase Process Error");
                         }}

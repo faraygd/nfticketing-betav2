@@ -28,10 +28,10 @@ export const Hero = () => {
             </Link>
           </div>
         </div>
-        <div className="mb-6 flex order-first md:order-none justify-end" data-aos="fade-right">
+        <div className="mb-6 flex order-first md:order-none justify-around" data-aos="fade-right">
           <img
-            className="w-full xl:w-auto"
-            src="https://gateway.ipfscdn.io/ipfs/QmUmSPFBQiYfNKFMRLUySaEiT3ym7TR82r8fx8CDKHVBP8/4.jpg"
+            className="w-full xl:w-[410px] h-[350px]"
+            src="https://i.ibb.co/hFZgsvx/Final-Hero.png"
           />
         </div>
       </div>

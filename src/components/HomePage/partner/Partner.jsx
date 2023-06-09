@@ -7,38 +7,17 @@ export const Partner = () => {
         </h1>
         {/* Feature */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-12 mt-20">
-          <div className="bg-gray-500 py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
+          <div className=" py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
             <img
-              className="h-20 md:h-40 rounded"
-              src="/images/microsoft_light.svg"
+              className="w-20 h-20 md:h-40"
+              src="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg?v=020"
               alt="vendor"
             />
           </div>
-          <div className="bg-gray-500 py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
+          <div className=" py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
             <img
-              className="h-20 md:h-40 rounded"
-              src="/images/meta_light.svg"
-              alt="vendor"
-            />
-          </div>
-          <div className="bg-gray-500 py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
-            <img
-              className="h-20 md:h-40 rounded"
-              src="/images/salesforce.svg"
-              alt="vendor"
-            />
-          </div>
-          <div className="bg-gray-500 py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
-            <img
-              className="h-20 md:h-40 rounded"
-              src="/images/twitch.svg"
-              alt="vendor"
-            />
-          </div>
-          <div className="bg-gray-500 py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
-            <img
-              className="h-20 md:h-40 rounded"
-              src="/images/netflix.svg"
+              className="h-20 md:h-40"
+              src="/images/thirdweb.svg"
               alt="vendor"
             />
           </div>

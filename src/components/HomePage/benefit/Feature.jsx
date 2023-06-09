@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Feature = ({ img, description, title }) => {
   return (
-    <div data-aos="fade-up" className="flex flex-col bg-red-10 items-center justify-center">
+    <div data-aos="fade-up" className="flex flex-col items-center justify-center">
       <Image
         src={img}
         width={100}

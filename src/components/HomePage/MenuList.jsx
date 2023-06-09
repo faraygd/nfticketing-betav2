@@ -1,6 +1,6 @@
-import { MenuListing } from './MenuListing'
-
-export const MenuList = () => {
+import { MenuListing } from "./MenuListing";
+import { AiOutlineMenu } from "react-icons/ai";
+export const MenuList = ({ setStatus }) => {
   const handleMove = (id) => {
     const elem = document.querySelector(id);
     if (elem) elem.scrollIntoView({ behavior: "smooth" });
