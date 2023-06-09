@@ -1,7 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import { ToastContainer } from "react-toastify";
-import { Heroes } from "../components/Heroes";
 import { HeaderApps } from "../components/apps/HeaderApps";
 import Gallery from "../components/mynft/Gallery";
 

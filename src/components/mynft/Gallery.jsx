@@ -1,52 +1,43 @@
-import React from "react";
-import {
-  ThirdwebNftMedia,
-  useAddress,
-  useContract,
-  useMetamask,
-  useNFTs,
-} from "@thirdweb-dev/react";
-const Gallery = () => {
-  const { contract: editionDrop } = useContract(
-    "0xc0A426810ba6557919C53F61752870bBb08e9ee0",
+import { useContract, useOwnedNFTs, useAddress } from "@thirdweb-dev/react";
+import NFTCard from "./NFTCard";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+const Gallery = ({ nft }) => {
+  const { contract } = useContract(
+    "0xe20b31df6137F2e559255A40d5f270d568896eB5",
     "edition-drop"
   );
-  const truncateAddress = (address) => {
-    return (
-      address.substring(0, 6) + "..." + address.substring(address.length - 4)
-    );
-  };
-  const { data: nfts } = useNFTs(editionDrop?.nft, {
-    start: 0,
-    count: 10,
-  });
-  console.log({ data : nfts});
+  const { data: nfts, isLoading: nftsLoading } = useOwnedNFTs(contract, useAddress());
+  useEffect(() => {
+    Aos.init();
+    console.log("aos", Aos);
+  }, []);
   return (
-    <>
-      {nfts && nfts?.length > 0 && (
-        <div className={styles.cards}>
-          {nfts
-            .filter(
-              (nft) =>
-                nft.owner !== "0x0000000000000000000000000000000000000000"
-            )
-            .map((nft) => (
-              <div key={nft.metadata.id.toString()}>
-                <h1>{nft.metadata.name}</h1>
-                <ThirdwebNftMedia
-                  metadata={nft.metadata}
-                />
-                <p>
-                  owned by{" "}
-                  {address && nft.owner === address
-                    ? "you"
-                    : truncateAddress(nft.owner)}
-                </p>
-              </div>
+    <div className="bg-[#21130d] min-h-screen h-full py-12">
+      <h1 className="text-center font-bold text-2xl text-white mt-12 my-12">
+        My NFT
+      </h1>
+      <div>
+      {nftsLoading &&  (
+          <div className="mx-auto flex flex-wrap items-center justify-center gap-8">
+            {Array.from({ length: nft }).map((_, i) => (
+              <div className="!h-60 !w-60 animate-pulse rounded-lg bg-gray-800" />
             ))}
-        </div>
-      )}
-    </>
+          </div>
+        )}
+        {nfts && nfts?.length > 0 && (
+          <div
+            className="flex flex-wrap items-center justify-center gap-8"
+            data-aos="fade-up"
+          >
+            {nfts.map((nft) => (
+              <NFTCard nft={nft} key={nft.metadata.id} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
