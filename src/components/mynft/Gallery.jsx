@@ -3,16 +3,18 @@ import NFTCard from "./NFTCard";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { contractAddress} from "../../../const/mydetails";
 const Gallery = ({ nft }) => {
-  const { contract } = useContract(
-    "0xe20b31df6137F2e559255A40d5f270d568896eB5",
+  const address = useAddress();
+  const { contract: editionDrop } = useContract(contractAddress,
     "edition-drop"
   );
-  const { data: nfts, isLoading: nftsLoading } = useOwnedNFTs(contract, useAddress());
+  const { data: nfts, isLoading: nftsLoading } = useOwnedNFTs(editionDrop, address);
   useEffect(() => {
     Aos.init();
     console.log("aos", Aos);
   }, []);
+
   return (
     <div className="bg-[#232222] min-h-screen h-full py-12">
       <h1 className="text-center font-bold text-2xl text-white mt-12 my-12">

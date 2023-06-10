@@ -7,34 +7,40 @@ import {
   useClaimIneligibilityReasons,
   Web3Button,
   useAddress,
+  useContractMetadata,
 } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BigNumber, utils } from "ethers";
 import { useMemo, useState } from "react";
 import ReactLoading from "react-loading";
-import Image from "next/image";
+import { parseIneligibility } from "../utils/parseIneligibility";
+import { contractAddress, tokenId } from "../../../const/mydetails";
 export const MintingBox = ({ spinningBubbles }) => {
   const address = useAddress();
-  const tokenId = 0; // Change to ID of NFT for Minting ( Thirdweb)
-  const { contract: editionDrop } = useContract(
-    "0xc0A426810ba6557919C53F61752870bBb08e9ee0",
+  const { contract: editionDrop } = useContract(contractAddress,
     "edition-drop"
   );
-
-  const claimedSupply = useTotalCirculatingSupply(editionDrop, tokenId);
+  const { data: contractMetadata } = useContractMetadata(editionDrop);
   const claimConditions = useClaimConditions(editionDrop);
   const activeClaimCondition = useActiveClaimConditionForWallet(
     editionDrop,
     address,
     tokenId
   );
+  const claimerProofs = useClaimerProofs(editionDrop, address || "", tokenId);
   const [quantity, setQuantity] = useState(1);
-  const isLoading = useMemo(() => {
-    return (
-      activeClaimCondition.isLoading || claimedSupply.isLoading || !editionDrop
-    );
-  }, [activeClaimCondition.isLoading, editionDrop, claimedSupply.isLoading]);
+  const claimIneligibilityReasons = useClaimIneligibilityReasons(
+    editionDrop,
+    {
+      quantity,
+      walletAddress: address || "",
+    },
+    tokenId
+  );
+
+  const claimedSupply = useTotalCirculatingSupply(editionDrop, tokenId);
+
   const totalAvailableSupply = useMemo(() => {
     try {
       return BigNumber.from(activeClaimCondition.data?.availableSupply || 0);
@@ -42,7 +48,11 @@ export const MintingBox = ({ spinningBubbles }) => {
       return BigNumber.from(1_000_000);
     }
   }, [activeClaimCondition.data?.availableSupply]);
-  const claimerProofs = useClaimerProofs(editionDrop, address || "", tokenId);
+
+  const numberClaimed = useMemo(() => {
+    return BigNumber.from(claimedSupply.data || 0).toString();
+  }, [claimedSupply]);
+
   const numberTotal = useMemo(() => {
     const n = totalAvailableSupply.add(BigNumber.from(claimedSupply.data || 0));
     if (n.gte(1_000_000)) {
@@ -50,6 +60,22 @@ export const MintingBox = ({ spinningBubbles }) => {
     }
     return n.toString();
   }, [totalAvailableSupply, claimedSupply]);
+
+  const priceToMint = useMemo(() => {
+    const bnPrice = BigNumber.from(
+      activeClaimCondition.data?.currencyMetadata.value || 0
+    );
+    return `${utils.formatUnits(
+      bnPrice.mul(quantity).toString(),
+      activeClaimCondition.data?.currencyMetadata.decimals || 18
+    )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
+  }, [
+    activeClaimCondition.data?.currencyMetadata.decimals,
+    activeClaimCondition.data?.currencyMetadata.symbol,
+    activeClaimCondition.data?.currencyMetadata.value,
+    quantity,
+  ]);
+
   const maxClaimable = useMemo(() => {
     let bnMaxClaimable;
     try {
@@ -73,6 +99,21 @@ export const MintingBox = ({ spinningBubbles }) => {
       bnMaxClaimable = perTransactionClaimable;
     }
 
+    const snapshotClaimable = claimerProofs.data?.maxClaimable;
+
+    if (snapshotClaimable) {
+      if (snapshotClaimable === "0") {
+        // allowed unlimited for the snapshot
+        bnMaxClaimable = BigNumber.from(1_000_000);
+      } else {
+        try {
+          bnMaxClaimable = BigNumber.from(snapshotClaimable);
+        } catch (e) {
+          // fall back to default case
+        }
+      }
+    }
+
     let max;
     if (totalAvailableSupply.lt(bnMaxClaimable)) {
       max = totalAvailableSupply;
@@ -90,9 +131,7 @@ export const MintingBox = ({ spinningBubbles }) => {
     activeClaimCondition.data?.maxClaimableSupply,
     activeClaimCondition.data?.maxClaimablePerWallet,
   ]);
-  const numberClaimed = useMemo(() => {
-    return BigNumber.from(claimedSupply.data || 0).toString();
-  }, [claimedSupply]);
+
   const isSoldOut = useMemo(() => {
     try {
       return (
@@ -111,14 +150,7 @@ export const MintingBox = ({ spinningBubbles }) => {
     numberClaimed,
     numberTotal,
   ]);
-  const claimIneligibilityReasons = useClaimIneligibilityReasons(
-    editionDrop,
-    {
-      quantity,
-      walletAddress: address || "",
-    },
-    tokenId
-  );
+
   const canClaim = useMemo(() => {
     return (
       activeClaimCondition.isSuccess &&
@@ -132,24 +164,17 @@ export const MintingBox = ({ spinningBubbles }) => {
     claimIneligibilityReasons.isSuccess,
     isSoldOut,
   ]);
+
+  const isLoading = useMemo(() => {
+    return (
+      activeClaimCondition.isLoading || claimedSupply.isLoading || !editionDrop
+    );
+  }, [activeClaimCondition.isLoading, editionDrop, claimedSupply.isLoading]);
+
   const buttonLoading = useMemo(
     () => isLoading || claimIneligibilityReasons.isLoading,
     [claimIneligibilityReasons.isLoading, isLoading]
   );
-  const priceToMint = useMemo(() => {
-    const bnPrice = BigNumber.from(
-      activeClaimCondition.data?.currencyMetadata.value || 0
-    );
-    return `${utils.formatUnits(
-      bnPrice.mul(quantity).toString(),
-      activeClaimCondition.data?.currencyMetadata.decimals || 18
-    )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
-  }, [
-    activeClaimCondition.data?.currencyMetadata.decimals,
-    activeClaimCondition.data?.currencyMetadata.symbol,
-    activeClaimCondition.data?.currencyMetadata.value,
-    quantity,
-  ]);
   const buttonText = useMemo(() => {
     if (isSoldOut) {
       return "Sold Out";
@@ -176,6 +201,7 @@ export const MintingBox = ({ spinningBubbles }) => {
     isSoldOut,
     canClaim,
     claimIneligibilityReasons.data,
+    buttonLoading,
     activeClaimCondition.data?.currencyMetadata.value,
     priceToMint,
     quantity,
@@ -194,7 +220,7 @@ export const MintingBox = ({ spinningBubbles }) => {
         </div>
       ) : (
         <div className="bg-black border border-outline w-[260px] ">
-          <img src="https://ipfs-2.thirdwebcdn.com/ipfs/QmaxdKEu3DPLeRh7hoTtrdwo8w2nikNQ27TmCDoBYJx3pD/Final-Hero.png" />
+          <img src={contractMetadata?.image} alt={`${contractMetadata?.name} preview image`}/>
           {/* <div className="bg-gray-100 w-full h-[250px]"/> */}
           <div className="text-center bg-black text-white">
             {claimedSupply ? (

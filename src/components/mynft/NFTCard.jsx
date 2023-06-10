@@ -1,15 +1,11 @@
 import { ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { useState } from "react";
+import { truncateAddress } from "../../../const/mydetails";
 const NFTCard = ({ nft }) => {
   const [hover, setHover] = useState(false);
-  const truncateAddress = (address) => {
-    return (
-      address.substring(0, 6) + "..." + address.substring(address.length - 4)
-    );
-  };
   return (
       <div
-        className="z-10 mx-auto flex h-36 w-36 cursor-pointer flex-col items-center justify-center gap-4 bg-transparent transition-all duration-300 hover:scale-105 md:h-60 md:w-60"
+        className="z-5 mx-auto flex h-36 w-36 cursor-pointer flex-col items-center justify-center gap-4 bg-transparent transition-all duration-300 hover:scale-105 md:h-60 md:w-60"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >

@@ -3,7 +3,7 @@ import '../../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThirdwebProvider activeChain="goerli">
+    <ThirdwebProvider activeChain="mumbai">
       <Component {...pageProps} />
     </ThirdwebProvider>
   );

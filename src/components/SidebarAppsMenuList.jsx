@@ -20,7 +20,7 @@ export const SidebarAppsMenuList = ({active}) => {
         >
           MyNFT
         </Link>
-        <ConnectWallet theme="white"/>
+        <div className="pl-6"><ConnectWallet theme="white"/></div>
       </ul>
     </nav>
   );
