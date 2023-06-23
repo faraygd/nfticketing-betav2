@@ -7,7 +7,7 @@ export const AppsMenuList = () => {
       <ul className="hidden lg:flex gap-6 items-center">
       <Link
         className="text-gray-400 font-medium text-lg hover:text-gray-200"
-        href="/apps"
+        href="/buyticket"
       >
         Buy Ticket
       </Link>

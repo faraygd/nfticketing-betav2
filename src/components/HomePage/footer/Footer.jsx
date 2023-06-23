@@ -7,7 +7,7 @@ import { FooterMenuList } from './FooterMenuList'
 
 export const Footer = () => {
   return (
-    <footer className="bg-orange-700 mt-40">
+    <footer className="bg-orange-500 mt-40">
       <div className="container py-6 px-4 mx-auto">
         <div className="flex flex-wrap gap-14 md:justify-center">
           <div className="">

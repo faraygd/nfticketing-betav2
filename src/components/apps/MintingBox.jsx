@@ -64,7 +64,6 @@ export const MintingBox = ({ spinningBubbles }) => {
       activeClaimCondition.data?.currencyMetadata.value || 0
     );
     return `${utils.formatUnits(
-      bnPrice.mul(quantity).toString(),
       activeClaimCondition.data?.currencyMetadata.decimals || 18
     )} ${activeClaimCondition.data?.currencyMetadata.symbol}`;
   }, [
@@ -217,15 +216,17 @@ export const MintingBox = ({ spinningBubbles }) => {
           />
         </div>
       ) : (
-        <div className="bg-black border border-outline w-[260px] ">
+        <div className="bg-black border border-outline">
           <img
-            src={contractMetadata?.image}
-            alt={`${contractMetadata?.name} preview image`}
+            src="https://ipfs-2.thirdwebcdn.com/ipfs/QmVtVJ6xcAzSaMjGbokooAMCuZqboNPsrz64vr778gVTrF/1.jpg"
+            alt={`${contractMetadata?.name}`}
           />
           {/* <div className="bg-gray-100 w-full h-[250px]"/> */}
           <div className="text-center bg-black text-white">
+            <div className="flex"></div>
             {claimedSupply ? (
               <div className="text-center items-center py-4">
+                <div className="flex"></div>
                 <p>
                   <b>{numberClaimed}</b>
                   {" / "}
@@ -233,7 +234,7 @@ export const MintingBox = ({ spinningBubbles }) => {
                 </p>
               </div>
             ) : (
-              <h2>Loading Supply</h2>
+              <h2>....</h2>
             )}
             {claimConditions.data?.length === 0 ||
             claimConditions.data?.every(
@@ -255,8 +256,12 @@ export const MintingBox = ({ spinningBubbles }) => {
                   >
                     -
                   </button>
-
-                  <h4>{quantity}</h4>
+                  <input
+                    className="text-black bg-none w-12 text-center rounded-sm"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                  {/* <h4>{quantity}</h4> */}
 
                   <button
                     className="cursor-pointer w-10 h-10 text-3xl bg-transparent ml-4"

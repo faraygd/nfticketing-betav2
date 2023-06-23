@@ -3,7 +3,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import { Heroes } from "../components/Heroes";
 import { HeaderApps } from "../components/apps/HeaderApps";
-const Apps = () => {
+const BuyTicket = () => {
   return (
     <>
       <Head>
@@ -29,4 +29,4 @@ const Apps = () => {
   );
 };
 
-export default Apps;
+export default BuyTicket;

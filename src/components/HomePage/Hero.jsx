@@ -21,10 +21,10 @@ export const Hero = () => {
           </div>
           <div className="flex mt-6">
             <Link
-              href="/apps"
+              href="/buyticket"
               className="py-4 px-8 text-white border font-bold border-white rounded"
             >
-              Launch Apps
+              Buy Ticket
             </Link>
           </div>
         </div>
