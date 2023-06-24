@@ -18,7 +18,7 @@ const Gallery = ({ nft }) => {
   return (
     <div className="bg-[#232222] min-h-screen h-full py-12">
       <h1 className="text-center font-bold text-2xl text-white mt-12 my-12">
-        My NFT
+        My Ticket
       </h1>
       <div>
       {nftsLoading &&  (
