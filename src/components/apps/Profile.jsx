@@ -1,8 +1,9 @@
 import React from "react";
 import { BsDiscord, BsGlobe, BsTwitter } from "react-icons/bs";
 import Link from "next/link";
-
-export const Profile = () => {
+import { useState } from "react";
+export const Profile = (isLoading) => {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="max-w-[360px]">
       <div
@@ -11,7 +12,7 @@ export const Profile = () => {
       <div className="py-4">
         <h3 className="font-bold text-gray-700 text-xl text-center md:text-left">NFTicketing Project</h3>
         <p className="text-gray-700 text-center md:text-left mt-2">
-          Description of Example NFTicketing
+          Example of NFTicketing
         </p>
         <div className="mt-2 flex justify-center md:justify-start">
           <Link href="/" className="flex gap-4">

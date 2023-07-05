@@ -1,6 +1,6 @@
 import React from "react";
-import { Profile } from './apps/Profile'
-import { MintingBox } from './apps/MintingBox'
+import { Profile } from './Profile';
+import { MintingBox } from './MintingBox';
 
 export const Heroes = (title, description) => {
   return (

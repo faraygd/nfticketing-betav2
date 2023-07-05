@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { Heroes } from "../components/Heroes";
+import { Heroes } from '../components/apps/Heroes';
 import { HeaderApps } from "../components/apps/HeaderApps";
 const BuyTicket = () => {
   return (
@@ -15,12 +15,18 @@ const BuyTicket = () => {
       <main>
         <div>
           <ToastContainer
-            position="top-center"
+            position="top-right"
             autoClose={5000}
             hideProgressBar={false}
-            reverseOrder={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
             theme="light"
           />
+
           <HeaderApps />
           <Heroes />
         </div>

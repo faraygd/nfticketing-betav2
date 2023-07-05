@@ -1,6 +1,6 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
-import { AiOutlineMenu } from "react-icons/ai";
 import Link from "next/link";
+
 export const AppsMenuList = () => {
   return (
     <div>

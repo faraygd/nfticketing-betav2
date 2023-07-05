@@ -13,9 +13,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BigNumber, utils } from "ethers";
 import { useMemo, useState } from "react";
-import ReactLoading from "react-loading";
-import { parseIneligibility } from "../utils/parseIneligibility";
+import { parseIneligibility } from '../utils/parseIneligibility';
 import { contractAddress, tokenId, typeNFT } from "../../../const/mydetails";
+import Image from "next/image";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 export const MintingBox = ({ spinningBubbles }) => {
   const address = useAddress();
   const [quantity, setQuantity] = useState(1);
@@ -182,9 +184,9 @@ export const MintingBox = ({ spinningBubbles }) => {
         activeClaimCondition.data?.currencyMetadata.value || 0
       );
       if (pricePerToken.eq(0)) {
-        return "Mint (Free)";
+        return "Buy (Free)";
       }
-      return `Mint (${priceToMint})`;
+      return `Buy (${priceToMint})`;
     }
     if (claimIneligibilityReasons.data?.length) {
       return parseIneligibility(claimIneligibilityReasons.data, quantity);
@@ -207,20 +209,11 @@ export const MintingBox = ({ spinningBubbles }) => {
     <div className="w-[250px]">
       {isLoading ? (
         <div className="">
-          <ReactLoading
-            type={spinningBubbles}
-            color={"#FFF"}
-            height={100}
-            width={100}
-            className="m-20"
-          />
+          <Skeleton count={1} baseColor="#202020" highlightColor="#444" width={250} height={300} />
         </div>
       ) : (
         <div className="bg-black border border-outline">
-          <img
-            src="https://ipfs-2.thirdwebcdn.com/ipfs/QmVtVJ6xcAzSaMjGbokooAMCuZqboNPsrz64vr778gVTrF/1.jpg"
-            alt={`${contractMetadata?.name}`}
-          />
+          <Image src={contractMetadata?.image} width={200} height={200} alt="NFTicketing"/>
           {/* <div className="bg-gray-100 w-full h-[250px]"/> */}
           <div className="text-center bg-black text-white">
             <div className="flex"></div>
@@ -277,7 +270,10 @@ export const MintingBox = ({ spinningBubbles }) => {
                     <div className="mb-6">
                       <Web3Button
                         contractAddress={editionDrop?.getAddress() || ""}
-                        action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+                        theme="dark"
+                        action={async (cntr) => {
+                          await cntr.erc1155.claim(tokenId, quantity)}
+                        }
                         isDisabled={!canClaim || buttonLoading}
                         onError={(err) => {
                           toast.error("Ticket Purchase Process Error");
@@ -296,16 +292,16 @@ export const MintingBox = ({ spinningBubbles }) => {
                     <div className="mb-6">
                       <Web3Button
                         contractAddress={editionDrop?.getAddress() || ""}
-                        action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+                        action={async(cntr) => await cntr.erc1155.claim(tokenId, quantity)}
+                        theme="dark"
                         isDisabled={!canClaim || buttonLoading}
                         onError={(err) => {
                           toast.error("Ticket Purchase Process Error");
                         }}
-                        onSuccess={() => {
+                        onSuccess={(result) => {
                           setQuantity(1);
-                          toast.success(
-                            "Ticket Purchase Process Successful, Check your transaction"
-                          );
+                          toast.success('Transaction completed');
+      
                         }}
                       >
                         {buttonLoading ? "Loading..." : buttonText}
