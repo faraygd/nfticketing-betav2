@@ -4,9 +4,9 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import Aos from "aos";
 import 'aos/dist/aos.css' 
-import Header from "../components/HomePage/Header";
-import { Hero } from "../components/HomePage/Hero";
-import { About } from "../components/HomePage/About";
+import Header from '../components/HomePage/Header/Header';
+import { Hero } from "../components/HomePage/Hero/Hero";
+import { About } from "../components/HomePage/About/About";
 import { Benefit } from "../components/HomePage/benefit/Benefit";
 import { Partner } from "../components/HomePage/partner/Partner";
 import { Footer } from "../components/HomePage/footer/Footer";
@@ -14,7 +14,6 @@ import { Footer } from "../components/HomePage/footer/Footer";
 export default function Home() {
   useEffect(() => {
     Aos.init();
-    console.log('aos', Aos)
   }, [])
   return (
     <>
