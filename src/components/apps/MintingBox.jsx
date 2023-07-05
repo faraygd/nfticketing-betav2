@@ -213,13 +213,14 @@ export const MintingBox = ({ spinningBubbles }) => {
         </div>
       ) : (
         <div className="bg-black border border-outline">
-          <Image src={contractMetadata?.image} width={200} height={200} alt="NFTicketing"/>
+          <Image src={contractMetadata?.image} width={200} height={200} alt="NFTicketing" className="mx-auto mt-4"/>
           {/* <div className="bg-gray-100 w-full h-[250px]"/> */}
           <div className="text-center bg-black text-white">
             <div className="flex"></div>
             {claimedSupply ? (
               <div className="text-center items-center py-4">
                 <div className="flex"></div>
+                <p>Minted</p>
                 <p>
                   <b>{numberClaimed}</b>
                   {" / "}
