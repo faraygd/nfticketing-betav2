@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Logo from "../../../public/images/Logo.svg"
+import Logo from "../../../../public/images/Logo.svg";
 import Image from "next/image";
 import { MenuList } from "../MenuList"
 import { Sidebar } from "../Sidebar";
-import { Trigger } from "../../Trigger";
+import { Trigger } from "../../../components/utils/Trigger";
 
 const Header = () => {
   const [nav, setNav] = useState(false);

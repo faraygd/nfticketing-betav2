@@ -3,7 +3,7 @@ import Logo from '../../../public/images/Logo.svg'
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarApps } from "./SidebarApps"
-import { Trigger } from "./Trigger";
+import { Trigger } from "../utils/Trigger";
 import { AppsMenuList } from "./AppsMenuList";
 export const HeaderApps = () => {
   const [nav, setNav] = useState(false);
