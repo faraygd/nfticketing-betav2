@@ -21,6 +21,20 @@ export const Partner = () => {
               alt="vendor"
             />
           </div>
+          <div className=" py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
+            <img
+              className="h-20 md:h-40"
+              src="/images/polygon.svg"
+              alt="vendor"
+            />
+          </div>
+          <div className=" py-4 px-6 rounded-md flex justify-center" data-aos="fade-up">
+            <img
+              className="h-20 md:h-40"
+              src="/images/eth.svg"
+              alt="vendor"
+            />
+          </div>
         </div>
       </div>
     </section>
