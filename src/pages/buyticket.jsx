@@ -1,8 +1,9 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { Heroes } from '../components/apps/Heroes';
+import { Heroes } from "../components/apps/Heroes";
 import { HeaderApps } from "../components/apps/HeaderApps";
+
 const BuyTicket = () => {
   return (
     <>

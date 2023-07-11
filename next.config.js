@@ -3,9 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      "bafybeidagfc22omsnhsed57qml3srk65ckiniimxfdbkwoxcdjwovlboba.ipfs.thirdwebstorage.com",
-      "bafybeid6ftw7hgxnr7p2l73a6lxyc2fsv5rq7w74u3luvzmmcrrc7t53tm.ipfs.thirdwebstorage.com"
-      
+      'bafybeifmkgxjwo72nm67ek3f7g4lzhgstgrodqn4x2mpyurgv6nvqaycz4.gateway.ipfscdn.io',
+      'bafybeidagfc22omsnhsed57qml3srk65ckiniimxfdbkwoxcdjwovlboba.gateway.ipfscdn.io',
     ]
   }
 }

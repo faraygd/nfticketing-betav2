@@ -1,7 +1,5 @@
 import { ClaimEligibility } from "@thirdweb-dev/sdk/evm";
-
 export function parseIneligibility(reasons, quantity) {
-
   if (!reasons.length) {
     return "";
   }
@@ -13,16 +11,16 @@ export function parseIneligibility(reasons, quantity) {
     reason === ClaimEligibility.NoActiveClaimPhase ||
     reason === ClaimEligibility.NoClaimConditionSet
   ) {
-    return <span>This drop is not ready to be minted.</span>;
+    return "This drop is not ready to be minted.";
   } else if (reason === ClaimEligibility.NotEnoughTokens) {
-    return <span>You don't have enough currency to mint.</span>;
+    return "You don't have enough currency to mint.";
   } else if (reason === ClaimEligibility.AddressNotAllowed) {
     if (quantity > 1) {
-      return <span>You are not eligible to mint {quantity} tokens.</span>;
+      return `You are not eligible to mint ${quantity} tokens.`;
     }
 
-    return <span>You are not eligible to mint at this time.</span>;
+    return "You are not eligible to mint at this time.";
   }
 
-  return <span>{reason}</span>;
+  return reason;
 }

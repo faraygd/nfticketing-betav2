@@ -2,8 +2,7 @@ import React from "react";
 import { BsDiscord, BsGlobe, BsTwitter } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from "react";
-export const Profile = (isLoading) => {
-  const [loading, setLoading] = useState(false);
+export const Profile = () => {
   return (
     <div className="max-w-[360px]">
       <div

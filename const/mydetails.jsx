@@ -1,7 +1,7 @@
 
-export const contractAddress = "0xe20b31df6137F2e559255A40d5f270d568896eB5";
+export const contractAddress = "0xb2A6A5b64D92834B2c90Cf115A9Bb643EC9274Bc";
 export const typeNFT="edition-drop";
-export const tokenId = 1;
+export const tokenId = "0";
 export const chainId = "goerli";
 export const truncateAddress = (address) => {
   return (
